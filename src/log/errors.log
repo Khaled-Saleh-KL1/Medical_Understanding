@@ -1,0 +1,40 @@
+2025-08-19 16:39:15,988 - StateGraph - ERROR - An error occurred during LLM model invocation
+Traceback (most recent call last):
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/LangGraph_Doc/src/StateGraph.py", line 75, in chatbot
+    if not messages or messages[0].get("role") != "system":
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'HumanMessage' object has no attribute 'get'
+2025-08-19 16:43:13,154 - StateGraph - ERROR - An error occurred during LLM model invocation
+Traceback (most recent call last):
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/LangGraph_Doc/src/StateGraph.py", line 75, in chatbot
+    if not messages or messages[0].get("role") != "system":
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'HumanMessage' object has no attribute 'get'
+2025-08-19 17:23:50,706 - StateGraph - ERROR - An error occurred during LLM model invocation
+Traceback (most recent call last):
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/LangGraph_Doc/src/StateGraph.py", line 75, in chatbot
+    if not messages or messages[0].get("role") != "system":
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/pydantic/main.py", line 991, in __getattr__
+    raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+AttributeError: 'HumanMessage' object has no attribute 'get'
+2025-08-19 17:32:18,558 - StateGraph - ERROR - An error occurred during LLM model invocation
+Traceback (most recent call last):
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/LangGraph_Doc/src/StateGraph.py", line 80, in chatbot
+    response = LLM_model.invoke(messages)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/langchain_google_genai/chat_models.py", line 1488, in invoke
+    return super().invoke(input, config, stop=stop, **kwargs)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 383, in invoke
+    self.generate_prompt(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 1006, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 825, in generate
+    self._generate_with_cache(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 1072, in _generate_with_cache
+    result = self._generate(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/langchain_google_genai/chat_models.py", line 1601, in _generate
+    return _response_to_result(response)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/LangGraph/langgraph/lib/python3.10/site-packages/langchain_google_genai/chat_models.py", line 782, in _response_to_result
+    generation_info["finish_reason"] = candidate.finish_reason.name
+AttributeError: 'int' object has no attribute 'name'

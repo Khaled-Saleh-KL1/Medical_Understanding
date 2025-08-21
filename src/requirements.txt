@@ -1,1 +1,9 @@
-torch==2.7.1+cu128
+langgraph==0.6.5
+langchain-core==0.3.74
+langchain-google-genai==2.1.9
+python-dotenv==1.1.1
+typing-extensions==4.14.1
+ipython==8.37.0
+langchain-tavily==0.2.11
+psycopg2-binary==2.9.10
+langgraph-checkpoint-postgres==2.0.23
