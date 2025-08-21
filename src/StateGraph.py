@@ -77,8 +77,13 @@ def chatbot(state: State):
     try:
         messages = state["messages"]
         
-        # Add system message if not already present
-        if not messages or not isinstance(messages[0], SystemMessage):
+        # Add system message ONLY if the message list is completely empty
+        # This preserves conversation history while ensuring system message exists
+        if not messages:
+            system_msg = SystemMessage(content=system_message)
+            messages = [system_msg]
+        elif not isinstance(messages[0], SystemMessage):
+            # If there are messages but no system message at the start, add it
             system_msg = SystemMessage(content=system_message)
             messages = [system_msg] + messages
         

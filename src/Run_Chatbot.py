@@ -16,8 +16,11 @@ def stream_graph_updates(user_input: str):
         # Include the config with thread_id for PostgreSQL checkpointer
         config = {"configurable": {"thread_id": THREAD_ID}}
         
+        # Create a HumanMessage for the user input
+        from langchain_core.messages import HumanMessage
+        
         # Add more detailed error handling
-        for event in graph.stream({"messages": [{"role": "user", "content": user_input}]}, config=config):
+        for event in graph.stream({"messages": [HumanMessage(content=user_input)]}, config=config):
             for node_name, value in event.items():
                 if "messages" in value and value["messages"]:
                     last_message = value["messages"][-1]
@@ -47,6 +50,7 @@ def main():
     
     while True:
         try:
+            print("================================ Human Message =================================")
             user_input = input("User: ")
             if user_input.lower().strip() in ["quit", "exit", "q"]:
                 print("Goodbye! 👋")
@@ -57,6 +61,7 @@ def main():
                 continue
             
             if user_input.strip():  # Only process non-empty input
+                print("================================== Ai Message ==================================")
                 stream_graph_updates(user_input)
             else:
                 print("Please enter a message.")
