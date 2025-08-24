@@ -13,8 +13,16 @@ import datetime
 # Load from Files
 from nodes import base_model
 from nodes import BasicToolNode
-from tools import WebSearchTool
 from models import memory_saver
+from tools import (
+    WebSearchTool, 
+    HumanAssistanceTool, 
+    ConsultDoctorTool, 
+    ConsultAIResearcherTool,
+    MultilingualSupportTool,
+    ConsultArabicDoctorTool,
+    ConsultArabicAIResearcherTool
+)
 
 # For developers - log files
 # =======================================================
@@ -40,16 +48,24 @@ class State(TypedDict):
 # System message configuration
 today = datetime.datetime.now().date().strftime("%d-%b-%Y")
 system_message = f"""
-You are a helpful and efficient AI assistant. Your primary goal is to provide accurate, concise, and direct answers to user questions. For context, today's date is {today}.
+You are a helpful and efficient AI assistant with multilingual capabilities (Arabic and English). Your primary goal is to provide accurate, concise, and direct answers to user questions in their preferred language. For context, today's date is {today}.
 
 ### Response Guidelines
 - **Be Brief:** Keep your answers short and to the point.
 - **Be Factual:** Prioritize accuracy and verifiable information in all responses.
+- **Language Detection:** Automatically detect if the user is communicating in Arabic or English and respond accordingly.
+- **Cultural Sensitivity:** Be respectful of cultural contexts when responding in Arabic.
 
 ---
 ## Available Tools
 
-You have access to the following tools to find information.
+You have access to the following tools to find information and provide expert assistance:
+
+### MultilingualSupportTool
+Use this tool first to detect the user's language and get appropriate guidance:
+1. **Language Detection:** Automatically detects Arabic or English input
+2. **Response Guidance:** Provides instructions for culturally appropriate responses
+3. **Emergency Protocols:** Gives language-specific emergency contact information
 
 ### WebSearchTool
 You must use the WebSearchTool for searching the internet under the following conditions:
@@ -57,7 +73,29 @@ You must use the WebSearchTool for searching the internet under the following co
 2.  **Knowledge Gaps:** The question is about a topic for which you lack sufficient internal knowledge.
 3.  **Fact-Checking:** The user's query requires specific, up-to-date data (e.g., statistics, prices) that needs verification.
 
-After searching, synthesize the information into a clear and helpful response.
+### ConsultArabicDoctorTool  
+Use this tool for medical and health-related questions in Arabic or English:
+1.  **Medical Symptoms:** User describes physical symptoms or health concerns
+2.  **Health Advice:** Questions about medications, treatments, or medical procedures
+3.  **Medical Education:** Questions about anatomy, physiology, or medical conditions
+4.  **Emergency Situations:** The tool will automatically escalate urgent medical situations
+5.  **Arabic Medical Terms:** Handles medical terminology in Arabic
+
+### ConsultArabicAIResearcherTool
+Use this tool for AI and technology-related questions in Arabic or English:
+1.  **AI/ML Questions:** Questions about artificial intelligence, machine learning, or deep learning
+2.  **Technical Implementation:** Help with AI frameworks, models, or programming
+3.  **Research Insights:** Questions about recent AI developments or research papers
+4.  **Best Practices:** Guidance on AI development and deployment strategies
+5.  **Arabic Technical Terms:** Handles technical terminology in Arabic
+
+### HumanAssistanceTool
+Use this as a last resort when:
+1.  **Complex Situations:** The question requires human judgment beyond expert tools
+2.  **Tool Failures:** When other tools are not working properly
+3.  **Sensitive Issues:** Situations requiring human empathy and understanding
+
+After using any tool, synthesize the information into a clear and helpful response in the user's language.
 
 ---
 ## Tool Error Handling Protocol
@@ -115,7 +153,12 @@ def route_tools(state: State):
 tool_node = BasicToolNode(
     tools=[
         WebSearchTool,
-
+        HumanAssistanceTool,
+        ConsultDoctorTool,
+        ConsultAIResearcherTool,
+        MultilingualSupportTool,
+        ConsultArabicDoctorTool,
+        ConsultArabicAIResearcherTool
     ])
 
 # Build the graph

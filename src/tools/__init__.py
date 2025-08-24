@@ -1,1 +1,7 @@
 from .WebSearch import WebSearchTool
+from .HumanAssistant import HumanAssistanceTool
+from .ConsultDoctor import ConsultDoctorTool
+from .ConsultAIResearcher import ConsultAIResearcherTool
+from .MultilingualSupport import MultilingualSupportTool
+from .ConsultArabicDoctor import ConsultArabicDoctorTool
+from .ConsultArabicAIResearcher import ConsultArabicAIResearcherTool
