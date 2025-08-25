@@ -1,0 +1,13 @@
+streamlit>=1.48.0
+requests>=2.31.0
+python-dotenv>=1.1.0
+# For direct mode integration
+langgraph>=0.6.5
+langchain-core>=0.3.74
+langchain-google-genai>=2.1.9
+langsmith>=0.4.16
+typing-extensions>=4.14.1
+langchain-tavily>=0.2.11
+psycopg2-binary>=2.9.10
+langgraph-checkpoint-postgres>=2.0.23
+pydantic>=2.7.4

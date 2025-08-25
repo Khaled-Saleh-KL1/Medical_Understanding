@@ -1,0 +1,57 @@
+2025-08-25 18:14:45,857 - StateGraph - ERROR - An error occurred during LLM model invocation
+Traceback (most recent call last):
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/Medical_Understanding/gui/../src/StateGraph.py", line 180, in chatbot
+    response = base_model.invoke(messages)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_core/runnables/base.py", line 5441, in invoke
+    return self.bound.invoke(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_google_genai/chat_models.py", line 1488, in invoke
+    return super().invoke(input, config, stop=stop, **kwargs)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 383, in invoke
+    self.generate_prompt(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 1006, in generate_prompt
+    return self.generate(prompt_messages, stop=stop, callbacks=callbacks, **kwargs)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 825, in generate
+    self._generate_with_cache(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_core/language_models/chat_models.py", line 1072, in _generate_with_cache
+    result = self._generate(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_google_genai/chat_models.py", line 1595, in _generate
+    response: GenerateContentResponse = _chat_with_retry(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_google_genai/chat_models.py", line 247, in _chat_with_retry
+    return _chat_with_retry(**params)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/tenacity/__init__.py", line 338, in wrapped_f
+    return copy(f, *args, **kw)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/tenacity/__init__.py", line 477, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/tenacity/__init__.py", line 378, in iter
+    result = action(retry_state)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/tenacity/__init__.py", line 420, in exc_check
+    raise retry_exc.reraise()
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/tenacity/__init__.py", line 187, in reraise
+    raise self.last_attempt.result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 451, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/tenacity/__init__.py", line 480, in __call__
+    result = fn(*args, **kwargs)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_google_genai/chat_models.py", line 238, in _chat_with_retry
+    raise e
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/langchain_google_genai/chat_models.py", line 216, in _chat_with_retry
+    return generation_method(**kwargs)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 868, in generate_content
+    response = rpc(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/medical_venv/lib/python3.10/site-packages/google/api_core/grpc_helpers.py", line 78, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.InternalServerError: 500 An internal error has occurred. Please retry or report in https://developers.generativeai.google/guide/troubleshooting

@@ -9,5 +9,7 @@ langchain-tavily==0.2.11
 psycopg2-binary==2.9.10
 langgraph-checkpoint-postgres==2.0.23
 fastapi[standard]==0.116.1
-pydantic==2.5.0
+pydantic>=2.7.4
 python-multipart==0.0.6
+streamlit==1.48.1
+requests>=2.31.0
