@@ -179,7 +179,7 @@ streamlit run streamlit_app.py
 #### Option C: REST API
 ```bash
 cd api
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+fastapi dev main.py
 ```
 
 #### Option D: Docker Deployment
@@ -293,35 +293,6 @@ AI Response:
 - **Regional Awareness**: Adaptation to different Arabic dialects and regional practices
 - **Religious Considerations**: Respectful handling of religious beliefs in medical contexts
 
-## 🔧 Advanced Configuration
-
-### Environment Variables
-
-```bash
-# Core Configuration
-GEMINI_API_KEY=your_gemini_api_key          # Required
-DATABASE_URL=postgresql://...               # Optional
-TAVILY_API_KEY=your_tavily_key              # Optional
-
-# API Configuration  
-API_HOST=0.0.0.0                           # Default: 0.0.0.0
-API_PORT=8000                              # Default: 8000
-API_WORKERS=4                              # Default: 1
-
-# Logging Configuration
-LOG_LEVEL=INFO                             # Default: ERROR
-LOG_FORMAT=detailed                        # Default: standard
-
-# Model Configuration  
-GEMINI_MODEL=gemini-2.5-flash              # Default: gemini-2.5-flash
-MODEL_TEMPERATURE=0.7                      # Default: 0.7
-MAX_TOKENS=8192                            # Default: 8192
-
-# Security Configuration
-CORS_ORIGINS=["http://localhost:3000"]     # Default: ["*"]
-API_KEY_HEADER=X-API-Key                   # Optional
-RATE_LIMIT_PER_MINUTE=60                   # Default: unlimited
-```
 
 ### PostgreSQL Setup
 
@@ -458,42 +429,6 @@ When an emergency is detected:
 - **Religious Considerations**: Appropriate spiritual support suggestions when relevant
 - **Cultural Sensitivity**: Emergency advice adapted to cultural contexts
 
-## 🧪 Testing
-
-### Unit Tests
-
-```bash
-# Run all tests
-python -m pytest tests/
-
-# Test specific components
-python -m pytest tests/test_agents.py        # Agent functionality
-python -m pytest tests/test_tools.py         # Tool integration  
-python -m pytest tests/test_multilingual.py  # Language support
-python -m pytest tests/test_emergency.py     # Emergency detection
-```
-
-### Integration Tests
-
-```bash
-# Test API endpoints
-python -m pytest tests/test_api.py
-
-# Test database integration
-python -m pytest tests/test_database.py  
-
-# Test end-to-end workflows
-python -m pytest tests/test_e2e.py
-```
-
-### Performance Testing
-
-```bash
-# Load testing with locust
-pip install locust
-locust -f tests/performance/locustfile.py --host=http://localhost:8000
-```
-
 ## 🚀 Deployment
 
 ### Docker Deployment
@@ -528,114 +463,8 @@ volumes:
   postgres_data:
 ```
 
-### Cloud Deployment
-
-#### AWS Deployment
-```bash
-# Using AWS ECS with Fargate
-aws ecs create-cluster --cluster-name medical-ai-cluster
-aws ecs create-service --cluster medical-ai-cluster --service-name medical-ai-service
-```
-
-#### Google Cloud Deployment  
-```bash
-# Using Google Cloud Run
-gcloud run deploy medical-ai --image gcr.io/PROJECT_ID/medical-ai --platform managed
-```
-
-#### Azure Deployment
-```bash
-# Using Azure Container Instances
-az container create --resource-group medical-ai-rg --name medical-ai-container
-```
-
-### Kubernetes Deployment
-
-```yaml
-# k8s/deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: medical-ai
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: medical-ai
-  template:
-    metadata:
-      labels:
-        app: medical-ai
-    spec:
-      containers:
-      - name: medical-ai
-        image: medical-ai:latest
-        ports:
-        - containerPort: 80
-        env:
-        - name: GEMINI_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: medical-ai-secrets
-              key: gemini-api-key
-```
-
-## 🔒 Security Considerations
-
-### API Security
-- **API Key Management**: Secure storage and rotation of API keys
-- **Rate Limiting**: Protection against abuse and DoS attacks
-- **Input Validation**: Comprehensive validation of all user inputs
-- **CORS Configuration**: Proper cross-origin resource sharing setup
-
-### Data Privacy
-- **Data Encryption**: All sensitive data encrypted in transit and at rest
-- **HIPAA Compliance**: Designed with healthcare data privacy in mind
-- **Session Isolation**: User sessions are completely isolated
-- **Data Retention**: Configurable data retention policies
-
 ### Medical Disclaimer
 The system includes comprehensive medical disclaimers and emphasizes that AI assistance does not replace professional medical care.
-
-## 🤝 Contributing
-
-We welcome contributions to improve the Medical Understanding AI Assistant!
-
-### Development Setup
-
-```bash
-# Fork and clone the repository
-git clone https://github.com/YOUR_USERNAME/Medical_Understanding.git
-cd Medical_Understanding
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install development dependencies
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
-
-# Install pre-commit hooks
-pre-commit install
-```
-
-### Contribution Guidelines
-
-1. **Issues**: Report bugs or request features via GitHub Issues
-2. **Pull Requests**: Submit PRs with clear descriptions and tests
-3. **Code Style**: Follow PEP 8 and use black for formatting
-4. **Testing**: Ensure all tests pass and add tests for new features
-5. **Documentation**: Update documentation for any changes
-
-### Areas for Contribution
-
-- **New Expert Agents**: Add specialized agents for different medical fields
-- **Language Support**: Extend multilingual capabilities to other languages
-- **Integrations**: Add integrations with EHR systems or medical databases
-- **UI Improvements**: Enhance the Streamlit interface with new features
-- **Performance**: Optimize response times and system performance
-- **Security**: Enhance security measures and compliance features
 
 ## 📚 API Documentation
 
@@ -660,27 +489,6 @@ GET /health/services          # External service status
 GET /admin/stats              # Usage statistics
 GET /admin/sessions           # Active sessions
 POST /admin/maintenance       # Maintenance mode toggle
-```
-
-### WebSocket Support
-
-For real-time streaming:
-
-```javascript
-// Connect to WebSocket
-const ws = new WebSocket('ws://localhost:8000/ws/chat');
-
-// Send message
-ws.send(JSON.stringify({
-  message: "Hello, I have a medical question",
-  session_id: "user123"
-}));
-
-// Receive streaming response
-ws.onmessage = function(event) {
-  const data = JSON.parse(event.data);
-  console.log('AI Response:', data.content);
-};
 ```
 
 ## 🎯 Use Cases
@@ -709,72 +517,9 @@ ws.onmessage = function(event) {
 - **Academic Support**: Research methodology and best practices
 - **Technology Integration**: AI integration strategies
 
-## 📈 Roadmap
-
-### Version 2.0 (Planned)
-- **Voice Interface**: Speech-to-text and text-to-speech capabilities
-- **Mobile App**: Native iOS and Android applications
-- **EHR Integration**: Electronic Health Record system integration
-- **Telemedicine**: Video consultation capabilities
-- **Advanced Analytics**: Comprehensive usage and outcome analytics
-
-### Version 3.0 (Future)
-- **Medical Imaging**: AI-powered medical image analysis
-- **Personalization**: User-specific health profiles and recommendations
-- **Clinical Decision Support**: Advanced diagnostic assistance
-- **Global Expansion**: Support for additional languages and regions
-- **Federated Learning**: Privacy-preserving collaborative learning
-
-## 🏆 Awards and Recognition
-
-- **Healthcare Innovation Award 2025**: Recognition for advancing AI in healthcare
-- **Open Source Excellence**: Community-driven development recognition
-- **Multilingual AI Pioneer**: Leadership in cross-cultural AI applications
-
-## 📞 Support
-
-### Community Support
-- **GitHub Issues**: Report bugs and request features
-- **Discord Community**: Join our developer and user community
-- **Stack Overflow**: Tag questions with `medical-understanding-ai`
-
-### Professional Support
-- **Documentation**: Comprehensive guides and tutorials
-- **Training**: Custom training sessions for organizations
-- **Consulting**: Implementation and customization services
-
 ### Contact Information
 - **Project Lead**: [Khaled Saleh](https://github.com/Khaled-Saleh-KL1)
-- **Email**: khaled.saleh.kl1@example.com
-- **LinkedIn**: [Khaled Saleh KL1](https://linkedin.com/in/khaled-saleh-kl1)
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License
-
-Copyright (c) 2025 Khaled Saleh (KL1)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+- **Email**: khaledsalehkl1@gmail.com
 
 ## 🙏 Acknowledgments
 
@@ -785,12 +530,6 @@ SOFTWARE.
 - **Streamlit**: Intuitive web interface framework
 - **PostgreSQL**: Reliable conversation persistence
 - **Tavily Search**: Real-time web search integration
-
-### Contributors
-- **Khaled Saleh (KL1)**: Project creator and lead developer
-- **Medical Advisory Board**: Healthcare professionals providing domain expertise
-- **Community Contributors**: Open-source contributors and testers
-- **Beta Testers**: Early adopters providing valuable feedback
 
 ### Inspiration
 This project was inspired by the need for accessible, multilingual medical information and the potential for AI to democratize healthcare knowledge while maintaining the highest standards of medical ethics and cultural sensitivity.
