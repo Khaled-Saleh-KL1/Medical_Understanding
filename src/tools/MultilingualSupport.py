@@ -114,43 +114,63 @@ multilingual_agent = MultilingualAgent()
 def MultilingualSupportTool(user_input: str) -> str:
     """Provide multilingual support for Arabic and English users.
     
+    **ALWAYS CALL THIS TOOL FIRST** for every user input to ensure consistent language handling.
+    
     This tool:
     - Detects the language of user input (Arabic or English)
-    - Provides responses in the same language as the input
-    - Translates responses when needed
-    - Adapts system behavior for different languages
+    - Provides response instructions in the detected language
+    - Ensures all subsequent expert responses match the user's language
+    - Provides culturally appropriate guidance for responses
     
     Args:
         user_input: The user's message in Arabic or English
         
     Returns:
-        str: Language detection result and guidance for the system
+        str: Language detection result and detailed response guidance for the system
     """
     try:
         detected_language = multilingual_agent.detect_language(user_input)
         
         if detected_language == "arabic":
-            return """
-تم اكتشاف اللغة العربية. يرجى الاستجابة باللغة العربية الفصحى.
+            return f"""
+LANGUAGE DETECTED: ARABIC
+USER INPUT: {user_input}
 
-إرشادات خاصة للاستجابة بالعربية:
-- استخدم التحية المناسبة (السلام عليكم، أهلاً وسهلاً)
-- كن محترماً ومهذباً في الخطاب
-- استخدم المصطلحات الطبية والعلمية العربية المناسبة
-- في الحالات الطبية الطارئة، انصح بالاتصال بالإسعاف (999 أو 997)
-- اشرح المفاهيم المعقدة بطريقة مبسطة
+MANDATORY INSTRUCTIONS FOR ALL EXPERT TOOLS:
+- Respond ONLY in Arabic (العربية الفصحى)
+- Use proper Arabic medical/technical terminology
+- Include appropriate Arabic greetings and cultural expressions
+- For medical emergencies, mention Arabic emergency numbers
+- Be respectful and culturally sensitive
+
+RESPONSE GUIDELINES:
+- Use formal Arabic language structure
+- Include Islamic cultural considerations when relevant
+- Provide clear explanations using familiar Arabic concepts
+- End responses with encouraging Arabic phrases when appropriate
+
+ALL SUBSEQUENT EXPERT RESPONSES MUST BE IN ARABIC.
 """
         else:
-            return """
-English language detected. Please respond in clear, professional English.
+            return f"""
+LANGUAGE DETECTED: ENGLISH
+USER INPUT: {user_input}
 
-Special guidance for English responses:
-- Use appropriate greetings (Hello, Good day)
-- Be respectful and professional in tone
-- Use proper medical and scientific terminology
-- For medical emergencies, recommend calling emergency services (911)
-- Explain complex concepts clearly
+MANDATORY INSTRUCTIONS FOR ALL EXPERT TOOLS:
+- Respond ONLY in clear, professional English
+- Use standard medical/technical terminology
+- Include appropriate English greetings and expressions
+- For medical emergencies, mention standard emergency numbers (911)
+- Be professional and accessible
+
+RESPONSE GUIDELINES:
+- Use clear, concise English language
+- Provide explanations using familiar Western concepts and examples
+- Maintain professional but friendly tone
+- Include helpful context and educational information
+
+ALL SUBSEQUENT EXPERT RESPONSES MUST BE IN ENGLISH.
 """
             
     except Exception as e:
-        return f"Language detection error: {str(e)}"
+        return f"Language detection error: {str(e)}. Defaulting to English for responses."

@@ -6,13 +6,13 @@ import sys
 import os
 from datetime import datetime
 
-# Add parent directory to path for imports
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from StateGraph import graph
-
 def save_graph_image():
     """Save the graph visualization to assets/visualize folder."""
     try:
+        # Lazy import to avoid circular dependency
+        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from StateGraph import graph
+        
         # Generate the graph image
         png_data = graph.get_graph().draw_mermaid_png()
         
@@ -43,6 +43,10 @@ def save_graph_image():
 def print_graph_info():
     """Print basic graph information."""
     try:
+        # Lazy import to avoid circular dependency
+        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        from StateGraph import graph
+        
         nodes = graph.get_graph().nodes
         edges = graph.get_graph().edges
         

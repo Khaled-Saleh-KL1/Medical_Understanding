@@ -7,7 +7,8 @@ from tools import (
     ConsultAIResearcherTool,
     MultilingualSupportTool,
     ConsultArabicDoctorTool,
-    ConsultArabicAIResearcherTool
+    ConsultArabicAIResearcherTool,
+    ConsultGeneralExpertTool
 )
 
 # Create the base LLM model
@@ -23,7 +24,8 @@ try:
         ConsultAIResearcherTool,
         MultilingualSupportTool,
         ConsultArabicDoctorTool,
-        ConsultArabicAIResearcherTool
+        ConsultArabicAIResearcherTool,
+        ConsultGeneralExpertTool
     ])
 except:
     print("GEMINI_API_KEY is not provided")

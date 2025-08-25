@@ -1,0 +1,19 @@
+2025-08-25 14:16:29,092 - uvicorn.error - INFO - Will watch for changes in these directories: ['/home/kl1/MyStuff/AllProgrammingFiles/VSCODE/Projects/Medical_Understanding/api']
+2025-08-25 14:16:29,093 - uvicorn.error - INFO - Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-08-25 14:16:29,094 - uvicorn.error - INFO - Started reloader process [123803] using WatchFiles
+2025-08-25 14:16:30,358 - uvicorn.error - INFO - Started server process [123815]
+2025-08-25 14:16:30,359 - uvicorn.error - INFO - Waiting for application startup.
+2025-08-25 14:16:30,360 - uvicorn.error - INFO - Application startup complete.
+2025-08-25 17:59:48,667 - uvicorn.error - WARNING - WatchFiles detected changes in 'models/responses.py'. Reloading...
+2025-08-25 17:59:48,757 - uvicorn.error - INFO - Shutting down
+2025-08-25 17:59:48,858 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-08-25 17:59:48,859 - uvicorn.error - INFO - Application shutdown complete.
+2025-08-25 17:59:48,859 - uvicorn.error - INFO - Finished server process [123815]
+2025-08-25 17:59:52,403 - uvicorn.error - INFO - Started server process [209353]
+2025-08-25 17:59:52,404 - uvicorn.error - INFO - Waiting for application startup.
+2025-08-25 17:59:52,405 - uvicorn.error - INFO - Application startup complete.
+2025-08-25 18:00:08,532 - uvicorn.error - INFO - Shutting down
+2025-08-25 18:00:08,633 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-08-25 18:00:08,633 - uvicorn.error - INFO - Application shutdown complete.
+2025-08-25 18:00:08,634 - uvicorn.error - INFO - Finished server process [209353]
+2025-08-25 18:00:10,831 - uvicorn.error - INFO - Stopping reloader process [123803]

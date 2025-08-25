@@ -5,3 +5,4 @@ from .ConsultAIResearcher import ConsultAIResearcherTool
 from .MultilingualSupport import MultilingualSupportTool
 from .ConsultArabicDoctor import ConsultArabicDoctorTool
 from .ConsultArabicAIResearcher import ConsultArabicAIResearcherTool
+from .ConsultGeneralExpert import ConsultGeneralExpertTool
