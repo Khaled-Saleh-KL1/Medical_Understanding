@@ -10,7 +10,7 @@
 
 The **Medical Understanding AI Assistant** is a comprehensive, multilingual AI-powered healthcare consultation system that combines cutting-edge artificial intelligence with specialized medical knowledge. Built using Google's Gemini AI and LangGraph framework, this system provides intelligent medical consultations, AI research assistance, and general knowledge support in both Arabic and English.
 
-This sophisticated system features a multi-agent architecture with specialized expert agents, conversation memory persistence via PostgreSQL, real-time web search capabilities, and emergency situation detection. It offers three distinct interfaces: a command-line interface, a REST API, and a modern web GUI built with Streamlit.
+This sophisticated system features a multi-agent architecture with specialized expert agents, conversation memory persistence via PostgreSQL, real-time web search capabilities, and emergency situation detection. It offers three distinct interfaces: a command-line interface, a FastAPI, and a modern web GUI built with Streamlit.
 
 ## 🌟 Key Features
 
@@ -25,7 +25,7 @@ This sophisticated system features a multi-agent architecture with specialized e
 
 ### User Interfaces
 - **💻 Command Line Interface**: Direct terminal-based interaction for developers
-- **🌐 REST API**: FastAPI-based endpoints for integration with external systems
+- **🌐 FastAPI**: FastAPI-based endpoints for integration with external systems
 - **📱 Web GUI**: Modern Streamlit interface with chat functionality and session management
 
 ### Technical Excellence
@@ -168,7 +168,7 @@ cd gui
 streamlit run streamlit_app.py
 ```
 
-#### Option C: REST API
+#### Option C: FastAPI
 ```bash
 cd api
 fastapi dev main.py
@@ -220,10 +220,10 @@ The Streamlit interface provides:
 - **Session Management**: Create new conversations or continue existing ones
 - **Emergency Detection**: Visual alerts for emergency situations  
 - **Language Selection**: Automatic language detection or manual selection
-- **Connection Modes**: Direct integration or API connection
+- **Connection Modes**: Direct integration or FastAPI connection
 - **Export Options**: Download conversation history
 
-### REST API Usage
+### FastAPI Usage
 
 ```bash
 # Start a chat conversation
@@ -399,7 +399,7 @@ The system includes comprehensive medical disclaimers and emphasizes that AI ass
 
 ## 📚 API Documentation
 
-### REST API Endpoints
+### FastAPI Endpoints
 
 #### Chat Endpoints
 ```bash
