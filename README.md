@@ -39,64 +39,56 @@ This sophisticated system features a multi-agent architecture with specialized e
 
 ```
 Medical_Understanding/
-├── 📁 api/                          # FastAPI REST API Service
-│   ├── main.py                      # API application entry point
-│   ├── helpers/                     # API utility functions
-│   │   ├── detection.py             # Expert detection and metadata
-│   │   └── health_checks.py         # System health monitoring
-│   ├── models/                      # Pydantic request/response models
-│   │   ├── requests.py              # API request schemas
-│   │   └── responses.py             # API response schemas
-│   ├── routes/                      # API endpoint definitions
-│   │   ├── chat.py                  # Chat conversation endpoints
-│   │   └── health.py                # Health check endpoints
-│   └── log/                         # API-specific logging
+├── api/                    # FastAPI REST API
+│   ├── main.py            # API entry point
+│   ├── helpers/           # Detection & health checks
+│   ├── models/            # Request/response schemas
+│   ├── routes/            # API endpoints
+│   └── log/               # API logs
 │
-├── 📁 gui/                          # Streamlit Web Interface
-│   ├── streamlit_app.py             # Main Streamlit application
-│   ├── requirements.txt             # GUI-specific dependencies
-│   └── log/                         # GUI-specific logging
+├── gui/                   # Streamlit Web Interface
+│   ├── streamlit_app.py   # Main web app
+│   ├── requirements.txt   # GUI dependencies
+│   └── log/               # GUI logs
 │
-├── 📁 src/                          # Core AI System
-│   ├── Run_Chatbot.py               # Command-line interface runner
-│   ├── StateGraph.py                # LangGraph state management and workflow
+├── src/                   # Core AI System
+│   ├── Run_Chatbot.py     # CLI interface
+│   ├── StateGraph.py      # LangGraph workflow
 │   │
-│   ├── 📁 AgentExpert/              # Specialized AI Agent Experts
-│   │   ├── doctor.py                # Medical specialist agent
-│   │   ├── arabic_doctor.py         # Arabic medical specialist
-│   │   ├── ai_researcher.py         # AI/ML research specialist
-│   │   ├── arabic_ai_researcher.py  # Arabic AI research specialist
-│   │   └── general_expert.py        # General knowledge specialist
+│   ├── AgentExpert/       # Specialized AI Agents
+│   │   ├── doctor.py      # Medical specialist
+│   │   ├── arabic_doctor.py
+│   │   ├── ai_researcher.py
+│   │   ├── arabic_ai_researcher.py
+│   │   └── general_expert.py
 │   │
-│   ├── 📁 nodes/                    # LangGraph Node Components
-│   │   ├── LLM.py                   # Language model configuration
-│   │   ├── ToolNode.py              # Tool execution node
-│   │   └── visualize_graph.py       # Graph visualization utilities
+│   ├── tools/             # Agent Tools
+│   │   ├── ConsultDoctor.py
+│   │   ├── ConsultArabicDoctor.py
+│   │   ├── WebSearch.py
+│   │   ├── MultilingualSupport.py
+│   │   └── HumanAssistant.py
 │   │
-│   ├── 📁 tools/                    # AI Agent Tools
-│   │   ├── ConsultDoctor.py         # Medical consultation tool
-│   │   ├── ConsultArabicDoctor.py   # Arabic medical consultation
-│   │   ├── ConsultAIResearcher.py   # AI research consultation
-│   │   ├── ConsultArabicAIResearcher.py # Arabic AI research
-│   │   ├── ConsultGeneralExpert.py  # General knowledge consultation
-│   │   ├── MultilingualSupport.py   # Language detection and support
-│   │   ├── WebSearch.py             # Real-time web search
-│   │   └── HumanAssistant.py        # Human escalation tool
+│   ├── nodes/             # LangGraph Components
+│   │   ├── LLM.py         # Language model config
+│   │   ├── ToolNode.py    # Tool execution
+│   │   └── visualize_graph.py
 │   │
-│   ├── 📁 models/                   # Data Models and Database
-│   │   ├── connect_database.py      # PostgreSQL integration
-│   │   ├── inspect_conversations.py # Conversation analysis tools
-│   │   └── quick_check.py           # Database health checks
+│   ├── models/            # Database & Models
+│   │   ├── connect_database.py
+│   │   ├── inspect_conversations.py
+│   │   └── quick_check.py
 │   │
-│   ├── 📁 assets/                   # Generated Assets
-│   │   └── visualize/               # Graph visualization outputs
-│   │
-│   └── 📁 log/                      # Centralized logging
+│   └── assets/            # Generated files
+│       └── visualize/     # Graph visualizations
 │
-├── 📄 dockerfile                    # Container deployment configuration
-├── 📄 requirements.txt              # Python dependencies
-├── 📄 LICENSE                       # MIT license
-└── 📄 README.md                     # This comprehensive documentation
+├── Docker/                # Containerization
+│   ├── docker-compose.yml
+│   └── dockerfile
+│
+├── requirements.txt       # Python dependencies
+├── LICENSE               # MIT license
+└── README.md             # This file
 ```
 
 ## 🤖 Multi-Agent Expert System
@@ -145,7 +137,7 @@ Create a `.env` file in the root directory:
 GEMINI_API_KEY=your_gemini_api_key_here
 
 # Optional: PostgreSQL Database for Conversation Memory
-DATABASE_URL=postgresql://username:password@localhost:5432/medical_ai
+DATABASE_URL=postgresql://username:password@localhost:5432/my_agent_db
 
 # Optional: Tavily Search API for Real-time Web Search
 TAVILY_API_KEY=your_tavily_api_key_here
@@ -184,8 +176,9 @@ fastapi dev main.py
 
 #### Option D: Docker Deployment
 ```bash
+cd Docker
 Run the docker compose file
-then go to localhost:8501
+then go to localhost:8501 on web
 ```
 
 ## 💻 Usage Examples
@@ -289,31 +282,6 @@ AI Response:
 - **Cultural Context**: Culturally appropriate responses for Arabic-speaking users
 - **Regional Awareness**: Adaptation to different Arabic dialects and regional practices
 - **Religious Considerations**: Respectful handling of religious beliefs in medical contexts
-
-
-### PostgreSQL Setup
-
-For production deployments with conversation persistence:
-
-```sql
--- Create user and database
-CREATE USER medical_ai WITH PASSWORD 'secure_password';
-CREATE DATABASE medical_ai OWNER medical_ai;
-
--- Grant permissions
-GRANT ALL PRIVILEGES ON DATABASE medical_ai TO medical_ai;
-
--- The application automatically creates this table:
--- CREATE TABLE checkpoints (
---     thread_id TEXT NOT NULL,
---     checkpoint_ns TEXT NOT NULL DEFAULT '',
---     checkpoint_id TEXT NOT NULL,
---     checkpoint JSONB NOT NULL,
---     metadata JSONB,
---     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---     PRIMARY KEY (thread_id, checkpoint_ns, checkpoint_id)
--- );
-```
 
 ### Custom Agent Configuration
 
