@@ -157,7 +157,7 @@ If using PostgreSQL for conversation persistence:
 
 ```sql
 -- Create database
-CREATE DATABASE medical_ai;
+CREATE DATABASE my_db_agent;
 
 -- The application will automatically create the required tables
 ```
@@ -184,11 +184,8 @@ fastapi dev main.py
 
 #### Option D: Docker Deployment
 ```bash
-# Build the container
-docker build -t medical-ai .
-
-# Run the container
-docker run -p 8000:80 --env-file .env medical-ai
+Run the docker compose file
+then go to localhost:8501
 ```
 
 ## 💻 Usage Examples
@@ -428,40 +425,6 @@ When an emergency is detected:
 - **Arabic Emergency Numbers**: Country-specific emergency contacts for Arabic users
 - **Religious Considerations**: Appropriate spiritual support suggestions when relevant
 - **Cultural Sensitivity**: Emergency advice adapted to cultural contexts
-
-## 🚀 Deployment
-
-### Docker Deployment
-
-```bash
-# Build production image
-docker build -t medical-ai:latest .
-
-# Run with docker-compose
-version: '3.8'
-services:
-  medical-ai:
-    build: .
-    ports:
-      - "8000:80"
-    environment:
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
-      - DATABASE_URL=${DATABASE_URL}
-    depends_on:
-      - postgres
-      
-  postgres:
-    image: postgres:15
-    environment:
-      POSTGRES_DB: medical_ai
-      POSTGRES_USER: medical_ai  
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
-```
 
 ### Medical Disclaimer
 The system includes comprehensive medical disclaimers and emphasizes that AI assistance does not replace professional medical care.

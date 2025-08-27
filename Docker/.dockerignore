@@ -1,0 +1,116 @@
+# Docker ignore file for Medical Understanding AI
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+log/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Node.js (if any)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git
+.git/
+.gitignore
+
+# Documentation source
+docs/_build/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Docker files (we want to include Dockerfile and docker-compose.yml)
+# But exclude any docker build context we don't need
+
+# Generated assets (but keep the directory structure)
+src/assets/visualize/*.png
+src/assets/visualize/*.svg
+
+# Backup files
+*.bak
+*.backup
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
+# Development files
+.coverage
+.pytest_cache
+.tox/
