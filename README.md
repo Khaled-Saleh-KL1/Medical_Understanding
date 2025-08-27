@@ -12,6 +12,8 @@ The **Medical Understanding AI Assistant** is a comprehensive, multilingual AI-p
 
 This sophisticated system features a multi-agent architecture with specialized expert agents, conversation memory persistence via PostgreSQL, real-time web search capabilities, and emergency situation detection. It offers three distinct interfaces: a command-line interface, a FastAPI, and a modern web GUI built with Streamlit.
 
+https://github.com/user-attachments/assets/9a76df9f-f98d-4a7e-99dd-fa92a851bbe3
+
 ## 🌟 Key Features
 
 ### Core Capabilities
@@ -468,3 +470,5 @@ This project was inspired by the need for accessible, multilingual medical infor
 ---
 
 **Disclaimer**: This AI assistant is designed to provide educational information and preliminary guidance only. It is not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of qualified healthcare providers with any questions you may have regarding medical conditions or treatments. In case of emergency, contact your local emergency services immediately.
+
+
